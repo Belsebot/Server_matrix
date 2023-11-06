@@ -96,12 +96,12 @@ async def main():					#Main funcion
 					log.write(buf)													#writes data to log file
 					log.write('\n')													#end of line
 					log.flush()													#saves log file
-			else:																#Else
-				print ("Connected by:",address[0],buf)											#prints connected address and data to screen
-				await send_message(client,buf)												#and sends it matrix room
-				log2.write(buf)														#and saves that to log file
-				log2.write('\n')													#end of line
-				log2.flush()														#saves log file
+				else:															#Else
+					print ("Connected by:",address[0],buf)										#prints connected address and data to screen
+					await send_message(client,buf)											#and sends it matrix room
+					log2.write(buf)													#and saves that to log file
+					log2.write('\n')												#end of line
+					log2.flush()													#saves log file
 
 
 
@@ -114,6 +114,8 @@ async def main():					#Main funcion
 		log2.write(now.strftime("%d-%m-%Y %H:%M"))								#writes date to log file
 		log2.write(' uusi serveri sammutettiin\n')								#and server is closed
 
+		await send_message(client,"Serveri sammutettiin")							#sends Server closed message to matrix room
+		
 		print("Serveri sammutettiin")										#prints server closed
 		ssocket.close()												#closes socket
 
